@@ -13,12 +13,12 @@ included in the doctest.
 #(a) Write a function that takes a town name as a string and evaluates to
 #        `True` if it is your hometown, and `False` otherwise.
 
-home_town = "Weswwtfield"
+home_town = "Westfield"
 first_name = "Erika"
 last_name = "Kettleson"
 
 def my_town_name(home_town):
-    """ tests if parameter (strings) match
+    """ tests if parameter (strings) match my hometown
     """
     if home_town.lower() == "westfield":
         # catch upper case entries
@@ -201,14 +201,21 @@ append_to_list([1, 2, 3], 4)
 #    fees.
 
 def calculate_price(base_item_price, state, tax):
-
-    tax = .05
+    # function taking a price, state & tax and returning state specific totals
 
     pre_fee_price = (base_item_price + (base_item_price * tax))
+    # total for all states besides fee-states
     pa_total_price = pre_fee_price + 2
+    # pa specific price
     ma_total_low_price = pre_fee_price + 1
+    # ma specific price for items under 100 dollars
     ma_total_high_price = pre_fee_price + 3
+    # ma specific price for items over 100 dollars
     ca_total_price = (pre_fee_price + (pre_fee_price * .03))
+    # ca specific price
+    tax = .05
+    state = state.lower()
+    # ensuring state variables are consistent
 
     if state == 'ca':
         total_price = ca_total_price
@@ -232,7 +239,34 @@ calculate_price(100, 'ma', .05)
 
 
 
+# 1. Make a new function that takes in a list and any number of additional
+# arguments, appends them to the list, and returns the entire list. Hint: this
+# isn't something we've discussed yet in class; you might need to google how to
+# write a Python function that takes in an arbitrary number of arguments.
 
+
+def list_append(lst, *args):
+    # fxn takes a list and *args to allow any number of extra arguments
+    return lst + [arg for arg in args]
+    # return the original list (lst) and list comphrehension through all args
+
+list_append([1, 2, 3], 45, 4, 67)
+
+# 2. Make a new function with a nested inner function.
+# The outer function will take in a word.
+# The inner function will multiply that word by 3.
+# Then, the outer function will call the inner function.
+# Output will be the original function argument and the result of the inner
+# function.
+
+def nested_word_function(n):
+    # function to triple word with function nested inside
+    def triple_word(word):
+        # return word ** n 
+        return word + word + word
+    return triple_word(n)
+
+print nested_word_function("drew")
 
 
 ###############################################################################
